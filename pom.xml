@@ -2,7 +2,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>apache.maven</groupId>
-  <artifactId>video</artifactId>
+  <artifactId>website</artifactId>
   <packaging>war</packaging>
   <version>1.0</version>
   <name>maven Maven Webapp</name>
@@ -40,6 +40,16 @@
       <groupId>org.springframework</groupId>
       <artifactId>spring-beans</artifactId>
       <version>4.3.5.RELEASE</version>
+    </dependency>
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis</artifactId>
+      <version>3.4.2</version>
+    </dependency>
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>5.1.6</version>
     </dependency>
   </dependencies>
   <build>

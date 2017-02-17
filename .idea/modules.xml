@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/onlineVideoManager.iml" filepath="$PROJECT_DIR$/onlineVideoManager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/onlineWebsiteManager.iml" filepath="$PROJECT_DIR$/onlineWebsiteManager.iml" />
     </modules>
   </component>
 </project>

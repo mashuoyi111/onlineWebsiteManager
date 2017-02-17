@@ -7,10 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="onlineVideoManager" />
+        <module name="onlineWebsiteManager" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="onlineVideoManager" target="1.5" />
+      <module name="onlineWebsiteManager" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>
