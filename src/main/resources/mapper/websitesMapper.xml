@@ -6,6 +6,11 @@
 
 
     <select id="getAllWebsites" resultType="Website">
-        select * from `websites`
+        select * from websites
     </select>
+
+    <insert id="insertWebsite" parameterType="Website">
+        insert into websites(id,name) values (#{id},#{name})
+    </insert>
+
 </mapper>

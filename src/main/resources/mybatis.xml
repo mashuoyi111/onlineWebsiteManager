@@ -4,6 +4,7 @@
 <configuration>
     <typeAliases>
         <typeAlias alias="Website" type="com.domain.Website"/>
+        <typeAlias alias="User" type="com.domain.User"/>
     </typeAliases>
 
     <environments default="development">
@@ -19,6 +20,7 @@
     </environments>
 
     <mappers>
-        <mapper resource="websitesMapper.xml"/>
+        <mapper resource="mapper/websitesMapper.xml"/>
+        <mapper resource="mapper/usersMapper.xml"/>
     </mappers>
 </configuration>
