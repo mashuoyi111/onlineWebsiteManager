@@ -3,8 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
-        <typeAlias alias="Website" type="com.domain.Website"/>
-        <typeAlias alias="User" type="com.domain.User"/>
+        <package name="com.domain"/>
     </typeAliases>
 
     <environments default="development">
