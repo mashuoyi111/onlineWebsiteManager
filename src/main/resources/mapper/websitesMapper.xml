@@ -8,8 +8,8 @@
         select * from websites
     </select>
 
-    <insert id="insertWebsite" parameterType="com.domain.Website" useGeneratedKeys="true" keyProperty="id">
-        insert into websites(name) values (#{name})
+    <insert id="insertWebsite" parameterType="Website" useGeneratedKeys="true" keyProperty="web_id">
+        insert into websites(web_name,web_comment,web_url,fav,tag_id,user_name) values (#{web_name},#{web_comment},#{web_url},#{fav},#{tag_id},#{user_name})
     </insert>
 
 </mapper>

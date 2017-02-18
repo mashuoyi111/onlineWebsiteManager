@@ -21,5 +21,6 @@
     <mappers>
         <mapper resource="mapper/websitesMapper.xml"/>
         <mapper resource="mapper/usersMapper.xml"/>
+        <mapper resource="mapper/tagsMapper.xml"/>
     </mappers>
 </configuration>
