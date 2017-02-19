@@ -32,6 +32,7 @@ public class indexController {
     private usersService usersService = new usersService();
     private websitesService websitesService = new websitesService();
 
+    @RequestMapping("/index.do")
     public ModelAndView welcome(HttpServletRequest request){
         String name= cookieTool.checkCookie(request);
         User user=usersService.getUserByName(name);
@@ -40,7 +41,12 @@ public class indexController {
         for(Tag t:tags){
             websites.addAll(websitesService.getWebsitesByTagid(t.getTag_id()));
         }
-        ModelAndView mv=new ModelAndView("welcome");
+        String message=user.getNickname()+"  ";
+        for(Website w:websites){
+            message=message.concat(w.getWeb_name()+"  ");
+        }
+
+        ModelAndView mv=new ModelAndView("welcome","message",message);
         return mv;
     }
 

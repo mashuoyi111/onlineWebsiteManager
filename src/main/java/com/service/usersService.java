@@ -21,7 +21,7 @@ public class usersService {
         return session.selectOne("checkUser",u);
     }
 
-    public User getUserByName(String username){
-        return session.selectOne("getUserByName",username);
+    public User getUserByName(String user_name){
+        return session.selectOne("getUserByName",user_name);
     }
 }

@@ -14,7 +14,7 @@ public class tagsService {
     SqlSession session = DBtool.getSession();
 
     public List<Tag> getTagsByUser(User user){
-        String username=user.getUser_name();
-        return session.selectList("getTagsByUsername",username);
+        String user_name=user.getUser_name();
+        return session.selectList("getTagsByUsername",user_name);
     }
 }

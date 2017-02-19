@@ -9,7 +9,7 @@
         select * from tags
     </select>
 
-    <select id="getTagsByUsername" parameterType="Integer" resultType="Tag">
+    <select id="getTagsByUsername" parameterType="String" resultType="Tag">
         select * from tags where user_name=#{user_name}
     </select>
 
