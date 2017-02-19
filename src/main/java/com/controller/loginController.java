@@ -32,19 +32,23 @@ public class loginController {
 
 
     @RequestMapping("/userlogin.do")
-    public ModelAndView welcome(HttpServletRequest request,
+    public String loginpage(HttpServletRequest request,
                                 @RequestParam(required = false) Integer type) {
         String name=cookieTool.checkCookie(request);
         if(name==""){
             if(type!=null&&type==0) {
-                return new ModelAndView("login","message","wrong user name or password!");
+                return "redirect:/login.jsp?type=1";
             }else{
-                return new ModelAndView("login");
+                return "redirect:/login.jsp";
             }
         }else{
-            User thisuser=usersService.getUserByName(name);
-            String message=thisuser.getNickname();
-            return new ModelAndView("welcome","message",message);
+
+            User user=usersService.getUserByName(name);
+            if(user!=null) {
+                return "redirect:/home/index.do";
+            }else{
+                return "redirect:/login.jsp";
+            }
         }
     }
 

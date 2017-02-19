@@ -8,6 +8,9 @@ public class Tag {
     private String tag_name;
     private String user_name;
 
+    public Tag(){
+    }
+
     public Tag(String user_name) {
         this.user_name = user_name;
     }

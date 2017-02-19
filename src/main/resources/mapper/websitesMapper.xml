@@ -12,4 +12,8 @@
         insert into websites(web_name,web_comment,web_url,fav,tag_id,user_name) values (#{web_name},#{web_comment},#{web_url},#{fav},#{tag_id},#{user_name})
     </insert>
 
+    <select id="getWebsitesByTagid" parameterType="String" resultType="Website">
+        select * from websites where tag_id=#{tag_id}
+    </select>
+
 </mapper>
