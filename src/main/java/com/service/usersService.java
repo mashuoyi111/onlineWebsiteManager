@@ -15,4 +15,13 @@ public class usersService {
     public List<User> getAllUsers(){
         return session.selectList("getAllUsers",1);
     }
+
+    public User checkUser(String username,String password){
+        User u=new User(username,password);
+        return session.selectOne("checkUser",u);
+    }
+
+    public User getUserByName(String username){
+        return session.selectOne("getUserByName",username);
+    }
 }

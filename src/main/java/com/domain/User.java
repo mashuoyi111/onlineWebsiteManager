@@ -9,6 +9,9 @@ public class User {
     private int permission;
     private String nickname;
 
+    public User() {
+    }
+
     public User(String user_name, String password, int permission, String nickname) {
         this.user_name = user_name;
         this.password = password;

@@ -8,4 +8,13 @@
     <select id="getAllUsers" resultType="User">
         select * from users
     </select>
+
+    <select id="checkUser" parameterType="User" resultType="User">
+        select * from users where user_name=#{user_name} and password=#{password}
+    </select>
+
+    <select id="getUserByName" parameterType="String" resultType="User">
+        select * from users where user_name=#{user_name}
+    </select>
+
 </mapper>

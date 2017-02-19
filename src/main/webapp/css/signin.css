@@ -1,19 +1,23 @@
 body {
-	background:url(../pic/login_bg.jpg) #f8f6e9;
+	background:url(../pic/login.jpg) #f8f6e9;
 }
 .remember{
-font-size: 16px;
+font-size: 18px;
 font-weight: bold;
 }
+.message{
+font-size: 18px;
+font-weight: bold;
+color:red;
+}
+
 .signin {
 	width:477px;
 	height:590px;
-	background:url(../pic/login_bg0.jpg) no-repeat;
 	margin:0 auto;
-
 	position:absolute;
 	top:50%;
-	left:25%;
+	left:50%;
 	margin-top:-239px;
 	margin-left:-238px;
 }

@@ -9,8 +9,13 @@ import com.tools.DBtool;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -18,22 +23,14 @@ import java.util.List;
  */
 
 @Controller
+@RequestMapping("/home")
 public class indexController {
-    private tagsService tagsService;
-    private usersService usersService;
-    private websitesService websitesService=new websitesService();
+    private tagsService tagsService = new tagsService();
+    private usersService usersService = new usersService();
+    private websitesService websitesService = new websitesService();
 
-    @RequestMapping("/hello")
-    public ModelAndView helloWorld() {
-        SqlSession session = DBtool.getSession();
-        String message = "Website names are: ";
-        List<Website> websites=websitesService.getAllWebsites();
-        Website web=new Website("sina","www.sina.com",1,"Max");
-        websitesService.insertWebsite(web);
-        for(Website w:websites){
-           message=message.concat(w.getWeb_name());
-        }
-        return new ModelAndView("hellopage", "message", message);
-    }
+
+
+
 
 }
