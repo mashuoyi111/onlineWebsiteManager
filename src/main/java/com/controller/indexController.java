@@ -36,6 +36,11 @@ public class indexController {
         }
         User user=usersService.getUserByName(name);
         List<Tag> tags=tagsService.getTagsByUser(user);
+        if(tags.size()==0){
+            Tag t=new Tag(user.getUser_name());
+            tagsService.insertTag(t);
+            tags.add(t);
+        }
         Tag currentTag=tags.get(0);
         if(tagNum!=null && tags.size()>=tagNum && tagNum>0){
              currentTag=tags.get(tagNum-1);

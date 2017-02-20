@@ -6,7 +6,7 @@ package com.domain;
 public class User {
     private String user_name;
     private String password;
-    private int permission;
+    private int permission=0;
     private String nickname;
 
     public User() {

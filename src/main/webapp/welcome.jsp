@@ -26,7 +26,7 @@
 
 <h1>
 <div class="welcomebar">
-    Hi <%=user.getNickname()%>
+    Hello, <%=user.getNickname()%>
 
 
     <div class="logout">
@@ -39,11 +39,13 @@
 
 
 
-<h2>
+<h3>
 <table class="sidebar">
 
 <tr class="websitesHeading">
     <th>tag</th>
+    <th></th>
+    <th></th>
 </tr>
 
 <%
@@ -56,15 +58,26 @@ for(int i=0;i<tags.size();i++){
     <%=tags.get(i).getTag_name()%>
     </a>
     </td>
+    <td align="center"><img width="25px" height="25px" src="../pic/modify.ico"> </td>
+    <td align="center"><img width="32px" height="32px" src="../pic/delete.ico"> </td>
 </tr>
 
 <%
 }
 %>
 
+<tr id="createTag" class="newWebsite" style="display:none;">
+<td><input type="text" class="form-control" name="username" id="username" required autofocus /></td>
+<td align="center" colspan="2"><img width="40px" height="40px" src="../pic/add.ico"></td>
+</tr>
+
+<tr class="newWebsite">
+<td align="center" colspan="3"><a id='createTagUrl' href="#" onclick="showOrHide('createTag','createTagUrl')">add new</a></td>
+</tr>
+
 </table>
 </div>
-</h2>
+</h3>
 
 
 <h2>
@@ -72,9 +85,11 @@ for(int i=0;i<tags.size();i++){
 <table class="websites">
 
 <tr class="websitesHeading">
-    <th>website Name</th>
-    <th class="websiteUrl">website Link</th>
+    <th>website name</th>
+    <th class="websiteUrl">Link</th>
     <th class="websiteComment">website info</th>
+    <th></th>
+    <th></th>
   </tr>
 
 <%
@@ -85,7 +100,7 @@ for(int i=0;i<websites.size();i++){
 <tr class="websites">
     <td align="center"><%=websites.get(i).getWeb_name()%></td>
     <td align="center"><a href="<%=websites.get(i).getWeb_url()%>" target="_blank" >
-    Go!
+    <img width="60px" height="40px" src="../pic/go.ico">
     </a></td>
     <td align="center">
     <% if(websites.get(i).getWeb_comment()!=null && websites.get(i).getWeb_comment().length()>30) {%>
@@ -94,17 +109,45 @@ for(int i=0;i<websites.size();i++){
         <%=websites.get(i).getWeb_comment()%>
         <%}%>
     </td>
+    <td align="center"><img width="25px" height="25px" src="../pic/modify.ico"> </td>
+    <td align="center"><img width="32px" height="32px" src="../pic/delete.ico"> </td>
 </tr>
 
 <%
 }}
 %>
 
-<tr class="newWebsite"> <td align="center" colspan="3">add new website</td> </tr>
+<tr class="newWebsite" id="createWebsite" style="display:none;">
+<td><input type="text" class="form-control" name="username" id="username" /></td>
+<td><input type="text" class="form-control" name="username" id="username" /></td>
+<td><input type="text" class="form-control" name="username" id="username" /></td>
+<td align="center" colspan="2"><img width="40px" height="40px" src="../pic/add.ico"></td>
+</tr>
+
+<tr class="newWebsite">
+<td align="center" colspan="5"><a id='createWebsiteUrl' href="#" onclick="showOrHide('createWebsite','createWebsiteUrl')">add new</a></td>
+</tr>
 
 </table>
 </h2>
 </div>
+
+
+<script type="text/javascript">
+
+function showOrHide(id,urlId){
+    var div=document.getElementById(id);
+    var div2=document.getElementById(urlId);
+    if(div.style.display=='none'){
+    div.style.display='table-row';
+    div2.innerHTML="cancel";
+    }else{
+    div.style.display='none';
+    div2.innerHTML="add new";
+    }
+}
+
+</script>
 
 </body>
 </html>

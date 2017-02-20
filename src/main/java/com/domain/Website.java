@@ -5,10 +5,10 @@ package com.domain;
  */
 public class Website {
     private int web_id;
-    private String web_name;
+    private String web_name="new website";
     private String web_comment;
-    private String web_url;
-    private int fav;
+    private String web_url="about:blank";
+    private int fav=0;
     private int tag_id;
     private String user_name;
 

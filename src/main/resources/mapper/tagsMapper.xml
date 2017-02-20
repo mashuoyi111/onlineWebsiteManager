@@ -4,6 +4,10 @@
 
 <mapper namespace="com.mapper">
 
+    <insert id="insertTag" parameterType="Tag" useGeneratedKeys="true" keyProperty="tag_id">
+        insert into tags(tag_id,tag_name,user_name) values (#{tag_id},#{tag_name},#{user_name})
+    </insert>
+
 
     <select id="getAllTags" resultType="Tag">
         select * from tags

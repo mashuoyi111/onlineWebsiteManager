@@ -17,4 +17,9 @@ public class tagsService {
         String user_name=user.getUser_name();
         return session.selectList("getTagsByUsername",user_name);
     }
+
+    public void insertTag(Tag t){
+        session.insert("insertTag",t);
+        session.commit();
+    }
 }

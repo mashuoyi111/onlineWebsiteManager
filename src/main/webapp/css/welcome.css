@@ -25,7 +25,7 @@ table.tags{
 
 table.sidebar {
     float: left;
-    width: 10%;
+    width: 12%;
     top:50%;
  }
 
@@ -64,6 +64,7 @@ tr.websitesHeading {
      }
 tr.newWebsite {
      background: #EBD6D6;
+     width: 60%;
      }
 .logout{
     float:right;
