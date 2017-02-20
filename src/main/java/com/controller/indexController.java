@@ -6,18 +6,13 @@ import com.domain.Website;
 import com.service.tagsService;
 import com.service.usersService;
 import com.service.websitesService;
-import com.tools.DBtool;
 import com.tools.cookieTool;
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,20 +28,31 @@ public class indexController {
     private websitesService websitesService = new websitesService();
 
     @RequestMapping("/index.do")
-    public ModelAndView welcome(HttpServletRequest request){
-        String name= cookieTool.checkCookie(request);
+    public ModelAndView welcome(HttpServletRequest request,
+                                @RequestParam(required = false) Integer tagNum){
+        String name= cookieTool.checkUserNameFromCookie(request);
+        if(name==""){
+            return new ModelAndView("expired");
+        }
         User user=usersService.getUserByName(name);
         List<Tag> tags=tagsService.getTagsByUser(user);
+        Tag currentTag=tags.get(0);
+        if(tagNum!=null && tags.size()>=tagNum && tagNum>0){
+             currentTag=tags.get(tagNum-1);
+        }
         List<Website> websites=new ArrayList<Website>();
         for(Tag t:tags){
             websites.addAll(websitesService.getWebsitesByTagid(t.getTag_id()));
         }
-        String message=user.getNickname()+"  ";
-        for(Website w:websites){
-            message=message.concat(w.getWeb_name()+"  ");
-        }
+        String message=user.getNickname();
 
         ModelAndView mv=new ModelAndView("welcome","message",message);
+
+        mv.addObject("user",user);
+        mv.addObject("tags",tags);
+        mv.addObject("currentTag",currentTag);
+        mv.addObject("websites",websites);
+
         return mv;
     }
 

@@ -1,0 +1,12 @@
+body {
+	background:url(../pic/login.jpg) #f8f6e9;
+}.expireinfo {
+ 	margin:0 auto;
+ 	position:absolute;
+ 	top:50%;
+ 	left:45%;
+ 	margin-top:-239px;
+ 	margin-left:-238px;
+ 	font-size:30px;
+ 	font-weight: bold;
+ }

@@ -17,19 +17,23 @@
 	<form class="form-signin" role="form" name="form" action="./home/login.do" method="post">
 	    <div class="message">
 	     <%
-	       if(type!=null&&type.equals("1")){
+	       if(type!=null&&type.equals("0")){
 	       %>
 	       password or user name is wrong!
 	     <%
+           }
+           %>
+           <%
+           if(type!=null&&type.equals("-1")){
+           	       %>
+           Log out success!
+           <%
            }
            %>
 	    </div>
 		<input type="text" class="form-control" name="username" id="username" required autofocus />
 		<input type="password" class="form-control" name="password" id="password" required />
 		<button class="btn btn-lg btn-danger btn-block" type="submit">login</button>
-		<label class="checkbox">
-			<div class="remember"><input type="checkbox" value="remember-me"> Remeber me</div>
-		</label>
 	</form>
 	<form class="form-signin" role="form" name="form" action="register.php" method="post">
 		<button class="btn btn-lg btn-success btn-block" type="button">register</button>

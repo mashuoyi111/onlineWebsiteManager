@@ -1,0 +1,76 @@
+body {
+	background:#FFF8D7;
+}
+
+th{
+    text-align: center;
+}
+
+mainContent{
+    padding:10px;
+    width:900px;
+    float:left;
+    }
+
+sidebar{
+    float: left;
+    padding:10px;
+    width: 400px;
+    background: #a4f;
+}
+
+table.tags{
+    width: 400px;
+}
+
+table.sidebar {
+    float: left;
+    width: 10%;
+    top:50%;
+ }
+
+tr.sidebar:nth-child(even) {
+     background: #E6E6F2;
+     }
+tr.sidebar:nth-child(odd) {
+     background: #DDDDFF;
+     }
+
+th.websiteUrl{
+    width:30%
+}
+
+
+th.websiteComment{
+    width:20%
+}
+
+table.websites {
+     position: absolute;
+     left: 15%;
+     top: 10%;
+     width: 60%;
+
+ }
+
+tr.websites:nth-child(even) {
+     background: #CCFF99;
+     }
+tr.websites:nth-child(odd) {
+     background: #CCFFCC;
+     }
+tr.websitesHeading {
+     background: #D2E9FF;
+     }
+tr.newWebsite {
+     background: #EBD6D6;
+     }
+.logout{
+    float:right;
+    width:200px;
+}
+.welcomebar{
+    margin:0 auto;
+    text-align:center;
+
+}

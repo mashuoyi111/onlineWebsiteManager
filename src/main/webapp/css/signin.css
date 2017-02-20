@@ -1,10 +1,6 @@
 body {
 	background:url(../pic/login.jpg) #f8f6e9;
 }
-.remember{
-font-size: 18px;
-font-weight: bold;
-}
 .message{
 font-size: 18px;
 font-weight: bold;
@@ -28,14 +24,8 @@ color:red;
 }
 .form-signin {
   max-width: 330px;
-  padding: 43px 15px 15px 15px;
+  padding: 30px 15px 15px 15px;
   margin: 0 auto;
-}
-.form-signin .checkbox {
-  margin-bottom: 10px;
-}
-.form-signin .checkbox {
-  font-weight: normal;
 }
 .form-signin .form-control {
   position: relative;
@@ -52,13 +42,13 @@ color:red;
 .form-signin input[type="text"] {
   margin-bottom: 14px;
   border-radius: 0;
-  padding-left:60px;
+  padding-left:30px;
   color:#000000;
 }
 .form-signin input[type="password"] {
   margin-bottom: 10px;
   border-radius: 0;
-  padding-left:60px;
+  padding-left:30px;
   color:#DC143C;
 }
 .form-signin button {
