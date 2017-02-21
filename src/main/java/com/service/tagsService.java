@@ -11,15 +11,24 @@ import java.util.List;
  * Created by Administrator on 2017/2/18.
  */
 public class tagsService {
-    SqlSession session = DBtool.getSession();
 
     public List<Tag> getTagsByUser(User user){
         String user_name=user.getUser_name();
-        return session.selectList("getTagsByUsername",user_name);
+        return DBtool.getSession().selectList("getTagsByUsername",user_name);
     }
 
     public void insertTag(Tag t){
-        session.insert("insertTag",t);
-        session.commit();
+        DBtool.getSession().insert("insertTag",t);
+        DBtool.getSession().commit();
     }
+
+    public void deleteTag(Integer tag_id){
+        DBtool.getSession().delete("deleteTag",tag_id);
+        DBtool.getSession().commit();
+    }
+
+    public Tag getTagById(Integer tag_id){
+        return DBtool.getSession().selectOne("getTagById",tag_id);
+    }
+
 }

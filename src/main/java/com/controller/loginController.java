@@ -44,18 +44,22 @@ public class loginController {
 
             User user=usersService.getUserByName(name);
             if(user!=null) {
-                return "redirect:/home/index.do";
+                 return "redirect:/home/index.do";
             }else{
                 return "redirect:/login.jsp";
             }
         }
     }
 
-    @RequestMapping(value = "login.do", method = RequestMethod.POST)
+    @RequestMapping(value = "/login.do", method = RequestMethod.POST)
     public String login(HttpServletRequest request,
                         HttpServletResponse response,
                         @RequestParam(required = true) String username,
                         @RequestParam(required = true) String password) {
+        String name=cookieTool.checkUserNameFromCookie(request);
+        if(name!=""){
+            return "redirect:/home/index.do";
+        }
         try{
             String sha1Password= DigestUtils.shaHex(password);
             User testUser=usersService.checkUser(username,sha1Password);

@@ -29,7 +29,8 @@ public class indexController {
 
     @RequestMapping("/index.do")
     public ModelAndView welcome(HttpServletRequest request,
-                                @RequestParam(required = false) Integer tagNum){
+                                @RequestParam(required = false) Integer tagNum,
+                                @RequestParam(required = false) Integer tagId){
         String name= cookieTool.checkUserNameFromCookie(request);
         if(name==""){
             return new ModelAndView("expired");
@@ -44,6 +45,12 @@ public class indexController {
         Tag currentTag=tags.get(0);
         if(tagNum!=null && tags.size()>=tagNum && tagNum>0){
              currentTag=tags.get(tagNum-1);
+        }
+        if(tagId!=null){
+            Tag t=tagsService.getTagById(tagId);
+            if(t!=null&&t.getUser_name().equals(name)){
+                currentTag=t;
+            }
         }
         List<Website> websites=new ArrayList<Website>();
         for(Tag t:tags){

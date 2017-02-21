@@ -10,18 +10,17 @@ import java.util.List;
  * Created by Administrator on 2017/2/18.
  */
 public class usersService {
-    SqlSession session = DBtool.getSession();
 
     public List<User> getAllUsers(){
-        return session.selectList("getAllUsers",1);
+        return DBtool.getSession().selectList("getAllUsers",1);
     }
 
     public User checkUser(String username,String password){
         User u=new User(username,password);
-        return session.selectOne("checkUser",u);
+        return DBtool.getSession().selectOne("checkUser",u);
     }
 
     public User getUserByName(String user_name){
-        return session.selectOne("getUserByName",user_name);
+        return DBtool.getSession().selectOne("getUserByName",user_name);
     }
 }

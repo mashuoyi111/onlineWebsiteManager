@@ -13,17 +13,19 @@ import java.io.Reader;
 public class DBtool {
     private static SqlSessionFactory sqlSessionFactory;
     private static Reader reader;
-
+    private static SqlSession sqlSession;
     static{
         try{
             reader    = Resources.getResourceAsReader("mybatis.xml");
             sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+            sqlSession=sqlSessionFactory.openSession();
         }catch(Exception e){
             e.printStackTrace();
         }
     }
 
     public static SqlSession getSession(){
-        return sqlSessionFactory.openSession();
+        return sqlSession;
     }
+
 }

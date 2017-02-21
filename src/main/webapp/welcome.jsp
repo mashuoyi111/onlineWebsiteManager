@@ -59,7 +59,10 @@ for(int i=0;i<tags.size();i++){
     </a>
     </td>
     <td align="center"><img width="25px" height="25px" src="../pic/modify.ico"> </td>
-    <td align="center"><img width="32px" height="32px" src="../pic/delete.ico"> </td>
+    <form role="form" name="deleteTag<%=i%>" id="deleteTag<%=i%>" action="./deleteTag.do" method="post">
+    <input type="text" class="form-control" name="tagId" id="tagId" value="<%=tags.get(i).getTag_id()%>"  style="display:none;"/>
+    <td align="center"><a href="#" onclick="if (confirm('really want to delete this tag? All websites in the tag will be removed!')) document.getElementById('deleteTag<%=i%>').submit(); else return false;"><img width="32px" height="32px" src="../pic/delete.ico"></a> </td>
+    </form>
 </tr>
 
 <%
@@ -67,8 +70,11 @@ for(int i=0;i<tags.size();i++){
 %>
 
 <tr id="createTag" class="newWebsite" style="display:none;">
-<td><input type="text" class="form-control" name="username" id="username" required autofocus /></td>
-<td align="center" colspan="2"><img width="40px" height="40px" src="../pic/add.ico"></td>
+<form role="form" name="addTag" action="./insertTag.do" method="post">
+<td><input type="text" class="form-control" name="tagName" id="tagName" /></td>
+<input type="text" class="form-control" name="userName" id="userName" value="<%=user.getUser_name()%>"  style="display:none;"/>
+<td align="center" colspan="2">  <a href="javascript:addTag.submit();"> <img width="40px" height="40px" src="../pic/add.ico"></a></td>
+</form>
 </tr>
 
 <tr class="newWebsite">
@@ -110,7 +116,10 @@ for(int i=0;i<websites.size();i++){
         <%}%>
     </td>
     <td align="center"><img width="25px" height="25px" src="../pic/modify.ico"> </td>
-    <td align="center"><img width="32px" height="32px" src="../pic/delete.ico"> </td>
+    <form role="form" name="deleteWeb<%=i%>" id="deleteWeb<%=i%>" action="./deleteWebsite.do" method="post">
+    <input type="text" class="form-control" name="webId" id="webId" value="<%=websites.get(i).getWeb_id()%>"  style="display:none;"/>
+    <td align="center"><a href="#" onclick="if (confirm('really want to delete this website?')) document.getElementById('deleteWeb<%=i%>').submit(); else return false;"><img width="32px" height="32px" src="../pic/delete.ico"></a> </td>
+    </form>
 </tr>
 
 <%
@@ -118,10 +127,14 @@ for(int i=0;i<websites.size();i++){
 %>
 
 <tr class="newWebsite" id="createWebsite" style="display:none;">
-<td><input type="text" class="form-control" name="username" id="username" /></td>
-<td><input type="text" class="form-control" name="username" id="username" /></td>
-<td><input type="text" class="form-control" name="username" id="username" /></td>
-<td align="center" colspan="2"><img width="40px" height="40px" src="../pic/add.ico"></td>
+<form role="form" name="addWebsite" action="./insertWebsite.do" method="post">
+<td><input type="text" class="form-control" name="webName" id="webName" /></td>
+<td><input type="text" class="form-control" name="webUrl" value="http://" id="webUrl" /></td>
+<td><input type="text" class="form-control" name="webComment" id="webComment" /></td>
+<input type="text" class="form-control" name="userName" id="userName" value="<%=user.getUser_name()%>"  style="display:none;"/>
+<input type="number" class="form-control" name="tagId" id="tagId" value="<%=tag.getTag_id()%>" style="display:none;"/>
+<td align="center" colspan="2">  <a href="javascript:addWebsite.submit();"> <img width="40px" height="40px" src="../pic/add.ico"></a></td>
+</form>
 </tr>
 
 <tr class="newWebsite">
@@ -146,6 +159,9 @@ function showOrHide(id,urlId){
     div2.innerHTML="add new";
     }
 }
+
+
+
 
 </script>
 

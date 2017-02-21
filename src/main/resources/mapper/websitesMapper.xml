@@ -16,4 +16,12 @@
         select * from websites where tag_id=#{tag_id}
     </select>
 
+    <select id="getWebsiteById" parameterType="Integer" resultType="Website">
+        select * from websites where web_id=#{web_id}
+    </select>
+
+    <delete id="deleteWebsite" parameterType="Integer">
+        delete from websites where web_id=#{web_id}
+    </delete>
+
 </mapper>

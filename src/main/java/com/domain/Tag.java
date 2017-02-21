@@ -11,6 +11,11 @@ public class Tag {
     public Tag(){
     }
 
+    public Tag(String tag_name, String user_name) {
+        this.tag_name = tag_name;
+        this.user_name = user_name;
+    }
+
     public Tag(String user_name) {
         this.user_name = user_name;
     }

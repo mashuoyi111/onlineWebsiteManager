@@ -13,8 +13,17 @@
         select * from tags
     </select>
 
+    <select id="getTagById" parameterType="Integer" resultType="Tag">
+        select * from tags where tag_id=#{tag_id}
+    </select>
+
+
     <select id="getTagsByUsername" parameterType="String" resultType="Tag">
         select * from tags where user_name=#{user_name}
     </select>
+
+    <delete id="deleteTag" parameterType="Integer">
+        delete from tags where tag_id=#{tag_id}
+    </delete>
 
 </mapper>
