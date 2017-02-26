@@ -135,7 +135,7 @@ for(int i=0;i<websites.size();i++){
     <td align="center"><a href="<%=websites.get(i).getWeb_url()%>" target="_blank" >
     <img width="60px" height="40px" src="../pic/go.ico">
     </a></td>
-    <td align="center">
+    <td align="center" width="35%">
     <% if(websites.get(i).getWeb_comment()!=null && websites.get(i).getWeb_comment().length()>30) {%>
         <%=websites.get(i).getWeb_comment().substring(0,30)+"..."%>
         <%}else{%>
