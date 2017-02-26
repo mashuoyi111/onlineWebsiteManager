@@ -40,11 +40,10 @@ public class tagsController {
         }
         User user=usersService.getUserByName(userName);
         if(user!=null) {
-            Tag t;
             if(tagName=="") {
                 tagName="new tag";
             }
-                t= new Tag(tagName, userName);
+            Tag t= new Tag(tagName, userName);
             tagsService.insertTag(t);
             return "redirect:/home/index.do";
         }
@@ -53,8 +52,8 @@ public class tagsController {
 
 
     @RequestMapping(value = "/deleteTag.do", method = RequestMethod.POST)
-    public String  deleteWebsite(HttpServletRequest request,
-                                 @RequestParam(required = false) Integer tagId
+    public String  deleteTag(HttpServletRequest request,
+                                 @RequestParam(required = true) Integer tagId
     ) {
         String name=cookieTool.checkUserNameFromCookie(request);
         if(name==""){
@@ -66,6 +65,31 @@ public class tagsController {
             if(t!=null&&t.getUser_name().equals(name)){
                 tagsService.deleteTag(tagId);
             }
+        }
+        return "redirect:/home/index.do";    }
+
+
+
+    @RequestMapping(value = "/updateTag.do", method = RequestMethod.POST)
+    public String  updateTag(HttpServletRequest request,
+                             @RequestParam(required = false) String tagName,
+                             @RequestParam(required = true) Integer tagId) {
+        String name=cookieTool.checkUserNameFromCookie(request);
+        if(name==""){
+            return "redirect:expired.jsp";
+        }
+        User user=usersService.getUserByName(name);
+
+        if(user!=null) {
+            if(tagName=="") {
+                tagName="new tag";
+            }
+            Tag t=tagsService.getTagById(tagId);
+            if(t!=null&&t.getUser_name().equals(name)){
+                t.setTag_name(tagName);
+                tagsService.updateTag(t);
+            }
+            return "redirect:/home/index.do?tagId="+tagId;
         }
         return "redirect:/home/index.do";    }
 

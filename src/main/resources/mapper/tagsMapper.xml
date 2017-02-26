@@ -26,4 +26,8 @@
         delete from tags where tag_id=#{tag_id}
     </delete>
 
+    <update id="updateTag" parameterType="Tag">
+        update tags set tag_name=#{tag_name} where tag_id=#{tag_id}
+    </update>
+
 </mapper>

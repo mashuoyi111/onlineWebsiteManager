@@ -26,12 +26,17 @@ public class websitesService {
 
 
     public void deleteWebsite(Integer web_id){
-        DBtool.getSession().insert("deleteWebsite",web_id);
+        DBtool.getSession().delete("deleteWebsite",web_id);
         DBtool.getSession().commit();
     }
 
     public Website getWebsiteById(Integer web_id){
         return DBtool.getSession().selectOne("getWebsiteById",web_id);
+    }
+
+    public void updateWebsite(Website w){
+        DBtool.getSession().update("updateWebsite",w);
+        DBtool.getSession().commit();
     }
 
 }

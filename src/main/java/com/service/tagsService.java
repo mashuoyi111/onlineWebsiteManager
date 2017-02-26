@@ -31,4 +31,9 @@ public class tagsService {
         return DBtool.getSession().selectOne("getTagById",tag_id);
     }
 
+    public void updateTag(Tag t){
+        DBtool.getSession().update("updateTag",t);
+        DBtool.getSession().commit();
+    }
+
 }

@@ -24,4 +24,8 @@
         delete from websites where web_id=#{web_id}
     </delete>
 
+    <update id="updateWebsite" parameterType="Website">
+        update websites set web_name=#{web_name}, web_comment=#{web_comment}, web_url= #{web_url}, fav=#{fav} where web_id=#{web_id}
+    </update>
+
 </mapper>

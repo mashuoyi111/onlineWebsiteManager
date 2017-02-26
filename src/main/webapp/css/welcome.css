@@ -29,10 +29,10 @@ table.sidebar {
     top:50%;
  }
 
-tr.sidebar:nth-child(even) {
+tr.sidebar:nth-child(4n-1) {
      background: #E6E6F2;
      }
-tr.sidebar:nth-child(odd) {
+tr.sidebar:nth-child(4n+1) {
      background: #DDDDFF;
      }
 
@@ -53,10 +53,11 @@ table.websites {
 
  }
 
-tr.websites:nth-child(even) {
+
+tr.websites:nth-child(4n+1) {
      background: #CCFF99;
      }
-tr.websites:nth-child(odd) {
+tr.websites:nth-child(4n-1) {
      background: #CCFFCC;
      }
 tr.websitesHeading {

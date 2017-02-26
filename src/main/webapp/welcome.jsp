@@ -52,13 +52,24 @@
 for(int i=0;i<tags.size();i++){
 %>
 
-<tr class="sidebar">
+<tr class="sidebar" id="modTag<%=i%>" style="display:none;">
+    <form role="form" name="updateTag<%=i%>" action="./updateTag.do" method="post">
+    <td><input type="text" class="form-control" name="tagName" value="<%=tags.get(i).getTag_name()%>" id="tagName<%=i%>" /></td>
+    <input type="text" class="form-control" name="tagId" id="tagId" value="<%=tags.get(i).getTag_id()%>"  style="display:none;"/>
+    <td align="center"><a href="#" onclick="showOrHideTag('<%=i%>')"><img width="22px" height="22px" src="../pic/cross.ico"></a> </td>
+    <td align="center"><a href="javascript:updateTag<%=i%>.submit();"> <img width="30px" height="30px" src="../pic/tick.ico"></a></td>
+
+    </form>
+</tr>
+
+
+<tr class="sidebar" id="shownTag<%=i%>">
     <td align="center">
     <a href="./index.do?tagNum=<%=i+1%>">
     <%=tags.get(i).getTag_name()%>
     </a>
     </td>
-    <td align="center"><img width="25px" height="25px" src="../pic/modify.ico"> </td>
+    <td align="center"><a href="#" onclick="showOrHideTag('<%=i%>','<%=tags.size()%>')"><img width="25px" height="25px" src="../pic/modify.ico"></a> </td>
     <form role="form" name="deleteTag<%=i%>" id="deleteTag<%=i%>" action="./deleteTag.do" method="post">
     <input type="text" class="form-control" name="tagId" id="tagId" value="<%=tags.get(i).getTag_id()%>"  style="display:none;"/>
     <td align="center"><a href="#" onclick="if (confirm('really want to delete this tag? All websites in the tag will be removed!')) document.getElementById('deleteTag<%=i%>').submit(); else return false;"><img width="32px" height="32px" src="../pic/delete.ico"></a> </td>
@@ -103,7 +114,23 @@ for(int i=0;i<websites.size();i++){
     if(websites.get(i).getTag_id()==tag.getTag_id()){
 %>
 
-<tr class="websites">
+<tr class="websites" id="modWeb<%=i%>" style="display:none;">
+    <form role="form" name="updateWebsite<%=i%>" action="./updateWebsite.do" method="post">
+
+    <td><input type="text" class="form-control" name="webName" value="<%=websites.get(i).getWeb_name()%>" id="webName<%=i%>"  /></td>
+    <td><input type="text" class="form-control" name="webUrl" value="<%=websites.get(i).getWeb_url()%>" id="webUrl<%=i%>" /></td>
+    <td><input type="text" class="form-control" name="webComment" value="<%=websites.get(i).getWeb_comment()%>" id="webComment<%=i%>" /></td>
+    <input type="text" class="form-control" name="webId" id="webId" value="<%=websites.get(i).getWeb_id()%>"  style="display:none;"/>
+
+    <td align="center"><a href="#" onclick="showOrHideWeb('<%=i%>')"><img width="22px" height="22px" src="../pic/cross.ico"></a> </td>
+    <td align="center"><a href="javascript:updateWebsite<%=i%>.submit();"> <img width="30px" height="30px" src="../pic/tick.ico"></a></td>
+    </form>
+
+</tr>
+
+
+
+<tr class="websites" id="shownWeb<%=i%>">
     <td align="center"><%=websites.get(i).getWeb_name()%></td>
     <td align="center"><a href="<%=websites.get(i).getWeb_url()%>" target="_blank" >
     <img width="60px" height="40px" src="../pic/go.ico">
@@ -115,7 +142,9 @@ for(int i=0;i<websites.size();i++){
         <%=websites.get(i).getWeb_comment()%>
         <%}%>
     </td>
-    <td align="center"><img width="25px" height="25px" src="../pic/modify.ico"> </td>
+
+    <td align="center"><a href="#" onclick="showOrHideWeb('<%=i%>','<%=websites.size()%>')"><img width="25px" height="25px" src="../pic/modify.ico"></a> </td>
+
     <form role="form" name="deleteWeb<%=i%>" id="deleteWeb<%=i%>" action="./deleteWebsite.do" method="post">
     <input type="text" class="form-control" name="webId" id="webId" value="<%=websites.get(i).getWeb_id()%>"  style="display:none;"/>
     <td align="center"><a href="#" onclick="if (confirm('really want to delete this website?')) document.getElementById('deleteWeb<%=i%>').submit(); else return false;"><img width="32px" height="32px" src="../pic/delete.ico"></a> </td>
@@ -160,7 +189,58 @@ function showOrHide(id,urlId){
     }
 }
 
+function showOrHideWeb(id,MaxWeb){
+    for(var i=0;i<MaxWeb;i++){
+                if(document.getElementById("shownWeb"+i)!=null)
+                    if(document.getElementById("shownWeb"+i).style.display=='none'){
+                    showWeb(i);
+                    }
+        }
+    var div=document.getElementById("shownWeb"+id);
+    var div2=document.getElementById("modWeb"+id);
+    if(div.style.display=='none'){
+    div.style.display='table-row';
+    div2.style.display='none';
+    }else{
+    div.style.display='none';
+    div2.style.display='table-row';
+    }
 
+}
+
+function showWeb(id){
+    var div=document.getElementById("shownWeb"+id);
+    var div2=document.getElementById("modWeb"+id);
+    div.style.display='table-row';
+    div2.style.display='none';
+}
+
+
+function showOrHideTag(id,MaxTag){
+    for(var i=0;i<MaxTag;i++){
+                if(document.getElementById("shownTag"+i)!=null)
+                    if(document.getElementById("shownTag"+i).style.display=='none'){
+                    showTag(i);
+                    }
+        }
+    var div=document.getElementById("shownTag"+id);
+    var div2=document.getElementById("modTag"+id);
+    if(div.style.display=='none'){
+    div.style.display='table-row';
+    div2.style.display='none';
+    }else{
+    div.style.display='none';
+    div2.style.display='table-row';
+    }
+
+}
+
+function showTag(id){
+    var div=document.getElementById("shownTag"+id);
+    var div2=document.getElementById("modTag"+id);
+    div.style.display='table-row';
+    div2.style.display='none';
+}
 
 
 </script>

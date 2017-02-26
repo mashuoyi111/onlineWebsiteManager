@@ -60,7 +60,7 @@ public class websitesController {
 
     @RequestMapping(value = "/deleteWebsite.do", method = RequestMethod.POST)
     public String  deleteWebsite(HttpServletRequest request,
-                                 @RequestParam(required = false) Integer webId) {
+                                 @RequestParam(required = true) Integer webId) {
         String name=cookieTool.checkUserNameFromCookie(request);
         if(name==""){
             return "redirect:expired.jsp";
@@ -72,6 +72,39 @@ public class websitesController {
             Integer tagId=w.getTag_id();
             if(w!=null&&w.getUser_name().equals(name)){
                 websitesService.deleteWebsite(webId);
+            }
+            return "redirect:/home/index.do?tagId="+tagId;
+        }
+        return "redirect:/home/index.do";    }
+
+
+
+    @RequestMapping(value = "/updateWebsite.do", method = RequestMethod.POST)
+    public String  updateWebsite(HttpServletRequest request,
+                                 @RequestParam(required = false) String webName,
+                                 @RequestParam(required = false) String webUrl,
+                                 @RequestParam(required = false) String webComment,
+                                 @RequestParam(required = true) Integer webId) {
+        String name=cookieTool.checkUserNameFromCookie(request);
+        if(name==""){
+            return "redirect:expired.jsp";
+        }
+        User user=usersService.getUserByName(name);
+
+        if(user!=null) {
+            if(webName==""){
+                webName="new website";
+            }
+            if(webUrl==""){
+                webUrl="about:blank";
+            }
+            Website w=websitesService.getWebsiteById(webId);
+            Integer tagId=w.getTag_id();
+            if(w!=null&&w.getUser_name().equals(name)){
+                w.setWeb_name(webName);
+                w.setWeb_url(webUrl);
+                w.setWeb_comment(webComment);
+                websitesService.updateWebsite(w);
             }
             return "redirect:/home/index.do?tagId="+tagId;
         }
