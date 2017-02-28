@@ -1,5 +1,5 @@
 # onlineWebsiteManager
-----------Created and edited by Shuoyi Ma-------------------
+----------This project is not finished yet; the project is designed and implemented by Shuoyi Ma-------------------
 #### a java web application that enables users to manage their websites
 
 This online bookmark system allows users to do all the jobs in only one page. This increased the complexity of this project. Used Javascript, Java, XML, HTML, SQL intensively. In addition, Spring, mybatis and bootstrap frameworks are used.
