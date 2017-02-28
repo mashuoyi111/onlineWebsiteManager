@@ -5,7 +5,6 @@
 This online bookmark system allows users to do all the jobs in only one page. This increased the complexity of this project. Used Javascript, Java, XML, HTML, SQL intensively. In addition, Spring, mybatis and bootstrap frameworks are used.
 
 <br />
-<br />
 
 ### Here are some screen shots:
 
