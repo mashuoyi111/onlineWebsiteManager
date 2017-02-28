@@ -1,9 +1,10 @@
 # onlineWebsiteManager
-a java web application that enables users to manage their websites
+----------Created and edited by Shuoyi Ma-------------------
+#### a java web application that enables users to manage their websites
 
-This online bookmark system allows users to do all the jobs in only one page. This increased the complexity of this project. Used Javascript, Java, XML, HTML, SQL intensively.
+This online bookmark system allows users to do all the jobs in only one page. This increased the complexity of this project. Used Javascript, Java, XML, HTML, SQL intensively. In addition, Spring, mybatis and bootstrap frameworks are used.
 
-Here are some screen shots:
+#### Here are some screen shots:
 
 ### login page used bootstrap to keep the page nice looking
 ![login page](https://github.com/mashuoyi111/onlineWebsiteManager/blob/master/screen%20shots/login%20img.jpeg)
@@ -17,4 +18,4 @@ Here are some screen shots:
 ### Modify: row will become editable and only one row will be allowed to become editable
 ![modify page](https://raw.githubusercontent.com/mashuoyi111/onlineWebsiteManager/master/screen%20shots/modify%20img.jpeg)
 
-### note that the tags can be deleted or modified as well. And there have to be at least one tag exists.
+### note that tags can be deleted or modified as well. And there have to be at least one tag exists.
