@@ -20,7 +20,7 @@ This online bookmark system allows users to do all the jobs in only one page. Th
 #### 4. Modify: row will become editable and only one row will be allowed to become editable
 ![modify page](https://raw.githubusercontent.com/mashuoyi111/onlineWebsiteManager/master/screen%20shots/modify%20img.jpeg)
 
-#### 4. My fav: all websites can be add/remove from "my favorite" list. The welcome page for a user will be the "my favorite" list
+#### 4. My favorite(new enhanced function, 2017/3/4): all websites can be add/remove from "my favorite" list. The welcome page for a user will be the "my favorite" list
 ![fav page1](https://raw.githubusercontent.com/mashuoyi111/onlineWebsiteManager/94c3d8ff94d220a1feb4541848b4507e48359227/screen%20shots/index%20fav.JPG)
 ![fav page2](https://raw.githubusercontent.com/mashuoyi111/onlineWebsiteManager/94c3d8ff94d220a1feb4541848b4507e48359227/screen%20shots/index%20addfav.JPG)
 
