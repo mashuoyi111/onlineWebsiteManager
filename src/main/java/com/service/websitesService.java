@@ -39,4 +39,10 @@ public class websitesService {
         DBtool.getSession().commit();
     }
 
+    public void setWebsiteFav(Integer web_id){
+        Website w=getWebsiteById(web_id);
+        w.changeFav();
+        updateWebsite(w);
+    }
+
 }

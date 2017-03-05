@@ -32,12 +32,13 @@ public class Website {
         this.user_name = user_name;
     }
 
-    public Website(String web_name, String web_comment, String web_url, int tag_id, String user_name) {
+    public Website(Integer web_fav,String web_name, String web_comment, String web_url, int tag_id, String user_name) {
         this.web_name = web_name;
         this.web_comment = web_comment;
         this.web_url = web_url;
         this.tag_id = tag_id;
         this.user_name = user_name;
+        this.fav=web_fav;
     }
 
     public int getWeb_id() {
@@ -94,5 +95,9 @@ public class Website {
 
     public void setUser_name(String user_name) {
         this.user_name = user_name;
+    }
+
+    public void changeFav(){
+        if(fav==0){fav++;}else{fav--;}
     }
 }

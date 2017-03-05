@@ -31,6 +31,7 @@ public class websitesController {
 
     @RequestMapping(value = "/insertWebsite.do", method = RequestMethod.POST)
     public String  insertWebsite(HttpServletRequest request,
+        @RequestParam(required = false) String webFav,
         @RequestParam(required = false) String webName,
         @RequestParam(required = false) String webUrl,
         @RequestParam(required = false) String webComment,
@@ -43,13 +44,17 @@ public class websitesController {
         }
         User user=usersService.getUserByName(userName);
         if(user!=null) {
+            int fav=0;
+            if(webFav.trim().toLowerCase().equals("yes")){
+                fav=1;
+            }
             if(webName==""){
                 webName="new website";
             }
             if(webUrl==""){
                 webUrl="about:blank";
             }
-            Website w=new Website(webName,webComment,webUrl,tagId,name);
+            Website w=new Website(fav,webName,webComment,webUrl,tagId,name);
             websitesService.insertWebsite(w);
             return "redirect:/home/index.do?tagId="+tagId;
         }
@@ -105,6 +110,31 @@ public class websitesController {
                 w.setWeb_url(webUrl);
                 w.setWeb_comment(webComment);
                 websitesService.updateWebsite(w);
+            }
+            return "redirect:/home/index.do?tagId="+tagId;
+        }
+        return "redirect:/home/index.do";    }
+
+
+
+    @RequestMapping(value = "/favWebsite.do", method = RequestMethod.POST)
+    public String  favWebsite(HttpServletRequest request,
+                                 @RequestParam(required = true) Integer webId,
+                                 @RequestParam(required = false) String favPage) {
+        String name=cookieTool.checkUserNameFromCookie(request);
+        if(name==""){
+            return "redirect:expired.jsp";
+        }
+        User user=usersService.getUserByName(name);
+
+        if(user!=null) {
+            Website w=websitesService.getWebsiteById(webId);
+            Integer tagId=w.getTag_id();
+            if(w!=null&&w.getUser_name().equals(name)){
+                websitesService.setWebsiteFav(webId);
+            }
+            if(favPage!=null){
+                return "redirect:/home/index.do";
             }
             return "redirect:/home/index.do?tagId="+tagId;
         }

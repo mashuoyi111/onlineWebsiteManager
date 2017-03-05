@@ -57,8 +57,8 @@ public class indexController {
             websites.addAll(websitesService.getWebsitesByTagid(t.getTag_id()));
         }
         String message=user.getNickname();
-
-        ModelAndView mv=new ModelAndView("welcome","message",message);
+        if(tagNum!=null||tagId!=null){
+        ModelAndView mv=new ModelAndView("websiteManager","message",message);
 
         mv.addObject("user",user);
         mv.addObject("tags",tags);
@@ -66,6 +66,13 @@ public class indexController {
         mv.addObject("websites",websites);
 
         return mv;
+        } else{
+            ModelAndView mv=new ModelAndView("websiteManagerWelcome","message",message);
+            mv.addObject("user",user);
+            mv.addObject("tags",tags);
+            mv.addObject("websites",websites);
+            return mv;
+        }
     }
 
 

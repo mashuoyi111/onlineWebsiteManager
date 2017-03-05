@@ -29,10 +29,10 @@ table.sidebar {
     top:50%;
  }
 
-tr.sidebar:nth-child(4n-1) {
+tr.sidebar:nth-child(4n) {
      background: #E6E6F2;
      }
-tr.sidebar:nth-child(4n+1) {
+tr.sidebar:nth-child(4n+2) {
      background: #DDDDFF;
      }
 
@@ -43,6 +43,14 @@ th.websiteUrl{
 
 th.websiteComment{
     width:20%
+}
+
+th.websiteFav{
+    width:15%
+}
+
+th.websiteName{
+    width:15%
 }
 
 table.websites {
@@ -62,6 +70,9 @@ tr.websites:nth-child(4n-1) {
      }
 tr.websitesHeading {
      background: #D2E9FF;
+     }
+tr.websitesFav {
+     background: #EBD6E6;
      }
 tr.newWebsite {
      background: #EBD6D6;

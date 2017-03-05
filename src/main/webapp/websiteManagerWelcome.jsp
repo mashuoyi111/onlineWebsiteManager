@@ -5,7 +5,6 @@
 <% User user=(User) request.getAttribute("user");
    List<Tag> tags=(List<Tag>) request.getAttribute("tags");
    List<Website> websites=(List<Website>) request.getAttribute("websites");
-   Tag tag=(Tag) request.getAttribute("currentTag");
 %>
 <!DOCTYPE html>
 <html lang="zh-cn">
@@ -26,7 +25,7 @@
 
 <h1>
 <div class="welcomebar">
-    Hello, <%=user.getNickname()%>
+    Hello, <%=user.getNickname()%>. Here are your favorite websites
 
 
     <div class="logout">
@@ -43,10 +42,18 @@
 <table class="sidebar">
 
 <tr class="websitesHeading">
-    <th>tag</th>
-    <th></th>
-    <th></th>
+    <th colspan="3">tag</th>
 </tr>
+
+<tr class="websitesFav">
+    <td align="center" colspan="3">
+        <a href="./index.do">
+        my favorite
+        </a>
+        </td>
+</tr>
+
+
 
 <%
 for(int i=0;i<tags.size();i++){
@@ -92,45 +99,52 @@ for(int i=0;i<tags.size();i++){
 <td align="center" colspan="3"><a id='createTagUrl' href="#" onclick="showOrHide('createTag','createTagUrl')">add new</a></td>
 </tr>
 
+
 </table>
 </div>
 </h3>
 
 
-<h2>
+<h3>
 <div class="mainContent">
 <table class="websites">
 
 <tr class="websitesHeading">
-    <th>website name</th>
+    <th>favorite</th>
+    <th class="websiteName">website name</th>
     <th class="websiteUrl">Link</th>
     <th class="websiteComment">website info</th>
-    <th></th>
-    <th></th>
+    <th class="websiteFav">from tag</th>
   </tr>
 
 <%
 for(int i=0;i<websites.size();i++){
-    if(websites.get(i).getTag_id()==tag.getTag_id()){
+    if(websites.get(i).getFav()==1){
+        String currentTagName="";
+        for(int j=0;j<tags.size();j++){
+            if(tags.get(j).getTag_id()==websites.get(i).getTag_id()){
+            currentTagName=tags.get(j).getTag_name();
+            }
+        }
 %>
 
 <tr class="websites" id="modWeb<%=i%>" style="display:none;">
-    <form role="form" name="updateWebsite<%=i%>" action="./updateWebsite.do" method="post">
-
-    <td><input type="text" class="form-control" name="webName" value="<%=websites.get(i).getWeb_name()%>" id="webName<%=i%>"  /></td>
-    <td><input type="text" class="form-control" name="webUrl" value="<%=websites.get(i).getWeb_url()%>" id="webUrl<%=i%>" /></td>
-    <td><input type="text" class="form-control" name="webComment" value="<%=websites.get(i).getWeb_comment()%>" id="webComment<%=i%>" /></td>
-    <input type="text" class="form-control" name="webId" id="webId" value="<%=websites.get(i).getWeb_id()%>"  style="display:none;"/>
-
-    <td align="center"><a href="#" onclick="showOrHideWeb('<%=i%>')"><img width="22px" height="22px" src="../pic/cross.ico"></a> </td>
-    <td align="center"><a href="javascript:updateWebsite<%=i%>.submit();"> <img width="30px" height="30px" src="../pic/tick.ico"></a></td>
-    </form>
-
 </tr>
 
 
 
 <tr class="websites" id="shownWeb<%=i%>">
+
+    <form role="form" name="favWeb<%=i%>" id="favWeb<%=i%>" action="./favWebsite.do" method="post">
+    <input type="text" class="form-control" name="favPage" id="favPage" value="yes"  style="display:none;"/>
+    <input type="text" class="form-control" name="webId" id="webId" value="<%=websites.get(i).getWeb_id()%>"  style="display:none;"/>
+    <% if(websites.get(i).getFav()==1) {%>
+        <td align="center"><a href="javascript:favWeb<%=i%>.submit();"><img width="32px" height="32px" src="../pic/fav.ico"></a> </td>
+    <%}else{%>
+        <td align="center"><a href="javascript:favWeb<%=i%>.submit();"><img width="32px" height="32px" src="../pic/unfav.ico"></a> </td>
+    <%}%>
+    </form>
+
     <td align="center"><%=websites.get(i).getWeb_name()%></td>
     <td align="center"><a href="<%=websites.get(i).getWeb_url()%>" target="_blank" >
     <img width="60px" height="40px" src="../pic/go.ico">
@@ -142,36 +156,17 @@ for(int i=0;i<websites.size();i++){
         <%=websites.get(i).getWeb_comment()%>
         <%}%>
     </td>
+    <td align="center"><a href="./index.do?tagId=<%=websites.get(i).getTag_id()%>"><%=currentTagName%></a></td>
 
-    <td align="center"><a href="#" onclick="showOrHideWeb('<%=i%>','<%=websites.size()%>')"><img width="25px" height="25px" src="../pic/modify.ico"></a> </td>
-
-    <form role="form" name="deleteWeb<%=i%>" id="deleteWeb<%=i%>" action="./deleteWebsite.do" method="post">
-    <input type="text" class="form-control" name="webId" id="webId" value="<%=websites.get(i).getWeb_id()%>"  style="display:none;"/>
-    <td align="center"><a href="#" onclick="if (confirm('really want to delete this website?')) document.getElementById('deleteWeb<%=i%>').submit(); else return false;"><img width="32px" height="32px" src="../pic/delete.ico"></a> </td>
-    </form>
 </tr>
 
 <%
 }}
 %>
 
-<tr class="newWebsite" id="createWebsite" style="display:none;">
-<form role="form" name="addWebsite" action="./insertWebsite.do" method="post">
-<td><input type="text" class="form-control" name="webName" id="webName" /></td>
-<td><input type="text" class="form-control" name="webUrl" value="http://" id="webUrl" /></td>
-<td><input type="text" class="form-control" name="webComment" id="webComment" /></td>
-<input type="text" class="form-control" name="userName" id="userName" value="<%=user.getUser_name()%>"  style="display:none;"/>
-<input type="number" class="form-control" name="tagId" id="tagId" value="<%=tag.getTag_id()%>" style="display:none;"/>
-<td align="center" colspan="2">  <a href="javascript:addWebsite.submit();"> <img width="40px" height="40px" src="../pic/add.ico"></a></td>
-</form>
-</tr>
-
-<tr class="newWebsite">
-<td align="center" colspan="5"><a id='createWebsiteUrl' href="#" onclick="showOrHide('createWebsite','createWebsiteUrl')">add new</a></td>
-</tr>
 
 </table>
-</h2>
+</h3>
 </div>
 
 
@@ -189,31 +184,6 @@ function showOrHide(id,urlId){
     }
 }
 
-function showOrHideWeb(id,MaxWeb){
-    for(var i=0;i<MaxWeb;i++){
-                if(document.getElementById("shownWeb"+i)!=null)
-                    if(document.getElementById("shownWeb"+i).style.display=='none'){
-                    showWeb(i);
-                    }
-        }
-    var div=document.getElementById("shownWeb"+id);
-    var div2=document.getElementById("modWeb"+id);
-    if(div.style.display=='none'){
-    div.style.display='table-row';
-    div2.style.display='none';
-    }else{
-    div.style.display='none';
-    div2.style.display='table-row';
-    }
-
-}
-
-function showWeb(id){
-    var div=document.getElementById("shownWeb"+id);
-    var div2=document.getElementById("modWeb"+id);
-    div.style.display='table-row';
-    div2.style.display='none';
-}
 
 
 function showOrHideTag(id,MaxTag){
