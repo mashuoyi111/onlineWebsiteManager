@@ -28,4 +28,8 @@
         update websites set web_name=#{web_name}, web_comment=#{web_comment}, web_url= #{web_url}, fav=#{fav} where web_id=#{web_id}
     </update>
 
+    <select id="searchWebsitesByName" parameterType="map" resultType="Website">
+        select * from websites where user_name=#{user_name} and contains(web_name,#{web_name})
+    </select>
+
 </mapper>

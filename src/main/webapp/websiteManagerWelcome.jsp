@@ -61,7 +61,7 @@ for(int i=0;i<tags.size();i++){
 
 <tr class="sidebar" id="modTag<%=i%>" style="display:none;">
     <form role="form" name="updateTag<%=i%>" action="./updateTag.do" method="post">
-    <td><input type="text" class="form-control" name="tagName" value="<%=tags.get(i).getTag_name()%>" id="tagName<%=i%>" /></td>
+    <td><input type="text" class="form-control" name="tagName" value="<%=tags.get(i).getTag_name()%>" id="tagName<%=i%>" maxlength="12" /></td>
     <input type="text" class="form-control" name="tagId" id="tagId" value="<%=tags.get(i).getTag_id()%>"  style="display:none;"/>
     <td align="center"><a href="#" onclick="showOrHideTag('<%=i%>')"><img width="22px" height="22px" src="../pic/cross.ico"></a> </td>
     <td align="center"><a href="javascript:updateTag<%=i%>.submit();"> <img width="30px" height="30px" src="../pic/tick.ico"></a></td>
@@ -89,7 +89,7 @@ for(int i=0;i<tags.size();i++){
 
 <tr id="createTag" class="newWebsite" style="display:none;">
 <form role="form" name="addTag" action="./insertTag.do" method="post">
-<td><input type="text" class="form-control" name="tagName" id="tagName" /></td>
+<td><input type="text" class="form-control" name="tagName" id="tagName" maxlength="12" /></td>
 <input type="text" class="form-control" name="userName" id="userName" value="<%=user.getUser_name()%>"  style="display:none;"/>
 <td align="center" colspan="2">  <a href="javascript:addTag.submit();"> <img width="40px" height="40px" src="../pic/add.ico"></a></td>
 </form>

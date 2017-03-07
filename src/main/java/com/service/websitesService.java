@@ -2,9 +2,10 @@ package com.service;
 
 import com.domain.Website;
 import com.tools.DBtool;
-import org.apache.ibatis.session.SqlSession;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2017/2/18.
@@ -43,6 +44,13 @@ public class websitesService {
         Website w=getWebsiteById(web_id);
         w.changeFav();
         updateWebsite(w);
+    }
+
+    public List<Website> searchWebsitesByName(String user_name,String web_name){
+        Map<String,String> searchMap=new HashMap<String, String>();
+        searchMap.put("user_name",user_name);
+        searchMap.put("web_name",web_name);
+        return DBtool.getSession().selectList("searchWebsitesByName",searchMap);
     }
 
 }
