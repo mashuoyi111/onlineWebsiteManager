@@ -6,27 +6,37 @@ th{
     text-align: center;
 }
 
+form.search{
+     padding:15px;
+     width: 80%;
+     margin:0 auto;
+     text-align:center;
+
+}
+
+inputbox{
+     width: 50%;
+
+}
+
+
 mainContent{
     padding:10px;
     width:900px;
     float:left;
     }
 
-sidebar{
-    float: left;
-    padding:10px;
-    width: 400px;
-    background: #a4f;
-}
+
 
 table.tags{
     width: 400px;
 }
 
 table.sidebar {
-    float: left;
+    position: absolute;
+    left: 0%;
     width: 12%;
-    top:50%;
+    top:5%;
  }
 
 tr.sidebar:nth-child(4n) {
@@ -56,7 +66,7 @@ th.websiteName{
 table.websites {
      position: absolute;
      left: 15%;
-     top: 10%;
+     top: 15%;
      width: 60%;
 
  }
@@ -80,9 +90,15 @@ tr.newWebsite {
      }
 .logout{
     float:right;
+    text-align:right;
     width:200px;
 }
+.searchButton{
+    float:left;
+    text-align:left;
+}
 .welcomebar{
+    width: 80%;
     margin:0 auto;
     text-align:center;
 

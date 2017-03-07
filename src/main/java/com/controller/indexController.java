@@ -67,6 +67,7 @@ public class indexController {
 
         return mv;
         } else{
+            message="Hello, "+user.getNickname()+". Here are your favorite websites:";
             ModelAndView mv=new ModelAndView("websiteManagerWelcome","message",message);
             mv.addObject("user",user);
             mv.addObject("tags",tags);
@@ -76,5 +77,26 @@ public class indexController {
     }
 
 
+
+    @RequestMapping("/search.do")
+    public ModelAndView welcome(HttpServletRequest request,
+                                @RequestParam(required = true) String web_name) {
+        String name = cookieTool.checkUserNameFromCookie(request);
+        if (name == "") {
+            return new ModelAndView("expired");
+        }
+        User user = usersService.getUserByName(name);
+        String message=user.getNickname();
+
+        List<Tag> tags = tagsService.getTagsByUser(user);
+        List<Website> websites= websitesService.searchWebsitesByName(user.getUser_name(), web_name);
+        message="Hello, "+user.getNickname()+". Results for: "+ web_name;
+        ModelAndView mv=new ModelAndView("websiteManagerSearch","message",message);
+        mv.addObject("user",user);
+        mv.addObject("tags",tags);
+        mv.addObject("websites",websites);
+        mv.addObject("web_name",web_name);
+        return mv;
+    }
 
 }

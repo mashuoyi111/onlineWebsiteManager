@@ -29,7 +29,7 @@
     </update>
 
     <select id="searchWebsitesByName" parameterType="map" resultType="Website">
-        select * from websites where user_name=#{user_name} and contains(web_name,#{web_name})
+        select * from websites where user_name=#{user_name} AND web_name like "%"#{web_name}"%"
     </select>
 
 </mapper>

@@ -5,6 +5,7 @@
 <% User user=(User) request.getAttribute("user");
    List<Tag> tags=(List<Tag>) request.getAttribute("tags");
    List<Website> websites=(List<Website>) request.getAttribute("websites");
+   String search_name=(String) request.getAttribute("web_name");
 %>
 <!DOCTYPE html>
 <html lang="zh-cn">
@@ -131,7 +132,6 @@ for(int i=0;i<tags.size();i++){
 
 <%
 for(int i=0;i<websites.size();i++){
-    if(websites.get(i).getFav()==1){
         String currentTagName="";
         for(int j=0;j<tags.size();j++){
             if(tags.get(j).getTag_id()==websites.get(i).getTag_id()){
@@ -148,7 +148,7 @@ for(int i=0;i<websites.size();i++){
 <tr class="websites" id="shownWeb<%=i%>">
 
     <form role="form" name="favWeb<%=i%>" id="favWeb<%=i%>" action="./favWebsite.do" method="post">
-    <input type="text" class="form-control" name="searchPage" id="searchPage" value="no"  style="display:none;"/>
+    <input type="text" class="form-control" name="searchPage" id="searchPage" value="<%=search_name%>"  style="display:none;"/>
     <input type="text" class="form-control" name="webId" id="webId" value="<%=websites.get(i).getWeb_id()%>"  style="display:none;"/>
     <% if(websites.get(i).getFav()==1) {%>
         <td align="center"><a href="javascript:favWeb<%=i%>.submit();"><img width="32px" height="32px" src="../pic/fav.ico"></a> </td>
@@ -173,7 +173,7 @@ for(int i=0;i<websites.size();i++){
 </tr>
 
 <%
-}}
+}
 %>
 
 

@@ -22,25 +22,36 @@
 </head>
 <body>
 
-<div class="sidebar">
+
 
 <h1>
+<div class="logout">
+    <a href="./userlogout.do">
+    <button class="btn btn-lg btn-danger btn-block" type="submit">log out</button>
+    </a>
+</div>
+
 <div class="welcomebar">
     Hello, <%=user.getNickname()%>. This is the tag: <%=tag.getTag_name()%>
 
 
-    <div class="logout">
-    <a href="./userlogout.do">
-    <button class="btn btn-lg btn-danger btn-block" type="submit">log out</button>
-    </a>
-    </div>
+    <form role="form" name="search" action="./search.do" method="get" class="search" >
+        <div class="col-lg-8">
+        <input type="text" class="form-control" name="web_name" id="web_name" maxlength="15" size="15" placeholder="search website name" required="required"/>
+        </div>
+        <div class="searchButton">
+        <button class="btn btn-primary btn-block" type="submit">search</button>
+        </div>
+    <form>
+
+
 </div>
 </h1>
 
 
 
 <h3>
-<table class="sidebar">
+<table class="sidebar" align="left">
 
 <tr class="websitesHeading">
     <th colspan="3">tag</th>
@@ -101,12 +112,16 @@ for(int i=0;i<tags.size();i++){
 </tr>
 
 </table>
-</div>
 </h3>
 
 
 <h3>
+
+
+
 <div class="mainContent">
+
+
 <table class="websites">
 
 <tr class="websitesHeading">

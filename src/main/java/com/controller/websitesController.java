@@ -1,6 +1,5 @@
 package com.controller;
 
-import com.domain.Tag;
 import com.domain.User;
 import com.domain.Website;
 import com.service.tagsService;
@@ -11,11 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Administrator on 2017/2/16.
@@ -120,7 +116,7 @@ public class websitesController {
     @RequestMapping(value = "/favWebsite.do", method = RequestMethod.POST)
     public String  favWebsite(HttpServletRequest request,
                                  @RequestParam(required = true) Integer webId,
-                                 @RequestParam(required = false) String favPage) {
+                                 @RequestParam(required = false) String searchPage) {
         String name=cookieTool.checkUserNameFromCookie(request);
         if(name==""){
             return "redirect:expired.jsp";
@@ -133,10 +129,15 @@ public class websitesController {
             if(w!=null&&w.getUser_name().equals(name)){
                 websitesService.setWebsiteFav(webId);
             }
-            if(favPage!=null){
+            if(searchPage.equals("no")){
                 return "redirect:/home/index.do";
-            }
+            }else if(searchPage!=null){
+                return "redirect:/home/search.do?web_name="+searchPage;
+            }else
             return "redirect:/home/index.do?tagId="+tagId;
         }
-        return "redirect:/home/index.do";    }
+        return "redirect:/home/index.do";
+    }
+
+
 }
