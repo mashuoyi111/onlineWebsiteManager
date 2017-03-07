@@ -36,7 +36,7 @@
 
     <form role="form" name="search" type="submit" action="./search.do" method="get" class="search" >
             <div class="col-lg-8">
-            <input type="text" class="form-control" name="web_name" id="web_name" maxlength="15" size="15" placeholder="search website name" required="required"/>
+            <input type="text" class="form-control" name="web_name" id="web_name" maxlength="15" size="15" placeholder="search website name (global)" required="required"/>
             </div>
             <div class="searchButton">
             <button class="btn btn-primary btn-block" type="submit">search</button>
