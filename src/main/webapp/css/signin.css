@@ -7,6 +7,17 @@ font-weight: bold;
 color:red;
 }
 
+.register {
+	width:477px;
+	height:590px;
+	margin:0 auto;
+	position:absolute;
+	top:55%;
+	left:50%;
+	margin-top:-239px;
+	margin-left:-238px;
+}
+
 .signin {
 	width:477px;
 	height:590px;

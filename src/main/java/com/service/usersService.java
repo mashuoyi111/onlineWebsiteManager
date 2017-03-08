@@ -23,4 +23,10 @@ public class usersService {
     public User getUserByName(String user_name){
         return DBtool.getSession().selectOne("getUserByName",user_name);
     }
+
+    public void insertUser(User u){
+        DBtool.getSession().insert("insertUser",u);
+        DBtool.getSession().commit();
+    }
+
 }

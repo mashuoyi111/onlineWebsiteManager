@@ -30,13 +30,20 @@
            <%
            }
            %>
+           <%
+           if(type!=null&&type.equals("1")){
+           %>
+           register success!
+           <%
+           }
+           %>
 	    </div>
-		<input type="text" class="form-control" name="username" id="username" required autofocus />
-		<input type="password" class="form-control" name="password" id="password" required />
+		<input type="text" class="form-control" name="username" id="username" required autofocus placeholder="user name" />
+		<input type="password" class="form-control" name="password" id="password" required placeholder="password"/>
 		<button class="btn btn-lg btn-danger btn-block" type="submit">login</button>
 	</form>
-	<form class="form-signin" role="form" name="form" action="register.php" method="post">
-		<button class="btn btn-lg btn-success btn-block" type="button">register</button>
+	<form class="form-signin" role="form" name="form" action="./register.jsp" method="post">
+		<button class="btn btn-lg btn-primary btn-block" type="submit">register</button>
 	</form>
 </div>
 

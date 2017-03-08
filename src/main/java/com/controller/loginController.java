@@ -88,4 +88,30 @@ public class loginController {
         return "redirect:/home/userlogin.do?type=-1";
     }
 
+
+    @RequestMapping("/register.do")
+    public String register(HttpServletRequest request,
+                           @RequestParam(required = true) String username,
+                           @RequestParam(required = true) String password,
+                           @RequestParam(required = true) String confirmed_password,
+                           @RequestParam(required = true) String nickname
+                           ){
+        if(username==null||password==null||confirmed_password==null||nickname==null){
+            return "redirect:/register.jsp";
+        }
+        if(usersService.getUserByName(username)!=null){
+            return "redirect:/register.jsp?type=-1";
+        }
+        if(!password.equals(confirmed_password)){
+            return "redirect:/register.jsp?type=0";
+        }
+        try {
+            User u = new User(username, DigestUtils.shaHex(password), 0, nickname);
+            usersService.insertUser(u);
+        }catch (Exception e){
+            System.out.println("insert user with an unexpected error");
+            return "redirect:/register.jsp";
+        }
+    return "redirect:/login.jsp?type=1";
+    }
 }
