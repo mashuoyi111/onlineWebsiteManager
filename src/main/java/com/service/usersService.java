@@ -1,32 +1,19 @@
 package com.service;
 
 import com.domain.User;
-import com.tools.DBtool;
-import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
 
 /**
- * Created by Administrator on 2017/2/18.
+ * Created by Ma on 17/3/10.
  */
-public class usersService {
+public interface usersService {
 
-    public List<User> getAllUsers(){
-        return DBtool.getSession().selectList("getAllUsers",1);
-    }
+    public List<User> getAllUsers();
 
-    public User checkUser(String username,String password){
-        User u=new User(username,password);
-        return DBtool.getSession().selectOne("checkUser",u);
-    }
+    public User checkUser(String username,String password);
 
-    public User getUserByName(String user_name){
-        return DBtool.getSession().selectOne("getUserByName",user_name);
-    }
+    public User getUserByName(String user_name);
 
-    public void insertUser(User u){
-        DBtool.getSession().insert("insertUser",u);
-        DBtool.getSession().commit();
-    }
-
+    public void insertUser(User u);
 }

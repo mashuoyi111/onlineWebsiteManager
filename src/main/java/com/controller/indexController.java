@@ -3,6 +3,9 @@ package com.controller;
 import com.domain.Tag;
 import com.domain.User;
 import com.domain.Website;
+import com.service.impl.tagsServiceImpl;
+import com.service.impl.usersServiceImpl;
+import com.service.impl.websitesServiceImpl;
 import com.service.tagsService;
 import com.service.usersService;
 import com.service.websitesService;
@@ -23,9 +26,9 @@ import java.util.List;
 @Controller
 @RequestMapping("/home")
 public class indexController {
-    private tagsService tagsService = new tagsService();
-    private usersService usersService = new usersService();
-    private websitesService websitesService = new websitesService();
+    private tagsService tagsServiceImpl = new tagsServiceImpl();
+    private usersService usersServiceImpl = new usersServiceImpl();
+    private websitesService websitesServiceImpl = new websitesServiceImpl();
 
     @RequestMapping("/index.do")
     public ModelAndView welcome(HttpServletRequest request,
@@ -35,11 +38,11 @@ public class indexController {
         if(name==""){
             return new ModelAndView("expired");
         }
-        User user=usersService.getUserByName(name);
-        List<Tag> tags=tagsService.getTagsByUser(user);
+        User user= usersServiceImpl.getUserByName(name);
+        List<Tag> tags= tagsServiceImpl.getTagsByUser(user);
         if(tags.size()==0){
             Tag t=new Tag(user.getUser_name());
-            tagsService.insertTag(t);
+            tagsServiceImpl.insertTag(t);
             tags.add(t);
         }
         Tag currentTag=tags.get(0);
@@ -47,14 +50,14 @@ public class indexController {
              currentTag=tags.get(tagNum-1);
         }
         if(tagId!=null){
-            Tag t=tagsService.getTagById(tagId);
+            Tag t= tagsServiceImpl.getTagById(tagId);
             if(t!=null&&t.getUser_name().equals(name)){
                 currentTag=t;
             }
         }
         List<Website> websites=new ArrayList<Website>();
         for(Tag t:tags){
-            websites.addAll(websitesService.getWebsitesByTagid(t.getTag_id()));
+            websites.addAll(websitesServiceImpl.getWebsitesByTagid(t.getTag_id()));
         }
         String message=user.getNickname();
         if(tagNum!=null||tagId!=null){
@@ -85,11 +88,11 @@ public class indexController {
         if (name == "") {
             return new ModelAndView("expired");
         }
-        User user = usersService.getUserByName(name);
+        User user = usersServiceImpl.getUserByName(name);
         String message=user.getNickname();
 
-        List<Tag> tags = tagsService.getTagsByUser(user);
-        List<Website> websites= websitesService.searchWebsitesByName(user.getUser_name(), web_name);
+        List<Tag> tags = tagsServiceImpl.getTagsByUser(user);
+        List<Website> websites= websitesServiceImpl.searchWebsitesByName(user.getUser_name(), web_name);
         message="Hello, "+user.getNickname()+". Results for: "+ web_name;
         ModelAndView mv=new ModelAndView("websiteManagerSearch","message",message);
         mv.addObject("user",user);

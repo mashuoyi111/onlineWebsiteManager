@@ -1,6 +1,9 @@
 package com.controller;
 
 import com.domain.User;
+import com.service.impl.tagsServiceImpl;
+import com.service.impl.usersServiceImpl;
+import com.service.impl.websitesServiceImpl;
 import com.service.tagsService;
 import com.service.usersService;
 import com.service.websitesService;
@@ -22,9 +25,9 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 @RequestMapping("/home")
 public class loginController {
-    private tagsService tagsService=new tagsService();
-    private usersService usersService=new usersService();
-    private websitesService websitesService=new websitesService();
+    private tagsService tagsServiceImpl = new tagsServiceImpl();
+    private usersService usersServiceImpl = new usersServiceImpl();
+    private websitesService websitesServiceImpl = new websitesServiceImpl();
 
 
     @RequestMapping("/userlogin.do")
@@ -42,7 +45,7 @@ public class loginController {
             }
         }else{
 
-            User user=usersService.getUserByName(name);
+            User user= usersServiceImpl.getUserByName(name);
             if(user!=null) {
                  return "redirect:/home/index.do";
             }else{
@@ -62,7 +65,7 @@ public class loginController {
         }
         try{
             String sha1Password= DigestUtils.shaHex(password);
-            User testUser=usersService.checkUser(username,sha1Password);
+            User testUser= usersServiceImpl.checkUser(username,sha1Password);
             if(testUser!=null){
                 System.out.println("User: "+testUser.getUser_name()+" Just logged in");
                 Cookie cookie = new Cookie("curr_user", username);
@@ -99,7 +102,7 @@ public class loginController {
         if(username==null||password==null||confirmed_password==null||nickname==null){
             return "redirect:/register.jsp";
         }
-        if(usersService.getUserByName(username)!=null){
+        if(usersServiceImpl.getUserByName(username)!=null){
             return "redirect:/register.jsp?type=-1";
         }
         if(!password.equals(confirmed_password)){
@@ -107,7 +110,7 @@ public class loginController {
         }
         try {
             User u = new User(username, DigestUtils.shaHex(password), 0, nickname);
-            usersService.insertUser(u);
+            usersServiceImpl.insertUser(u);
         }catch (Exception e){
             System.out.println("insert user with an unexpected error");
             return "redirect:/register.jsp";

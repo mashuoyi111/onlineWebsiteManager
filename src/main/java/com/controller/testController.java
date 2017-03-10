@@ -2,6 +2,9 @@ package com.controller;
 
 import com.domain.User;
 import com.domain.Website;
+import com.service.impl.tagsServiceImpl;
+import com.service.impl.usersServiceImpl;
+import com.service.impl.websitesServiceImpl;
 import com.service.tagsService;
 import com.service.usersService;
 import com.service.websitesService;
@@ -19,18 +22,17 @@ import java.util.List;
 
 @Controller
 public class testController {
-    private tagsService tagsService=new tagsService();
-    private usersService usersService=new usersService();
-    private websitesService websitesService=new websitesService();
+    private tagsService tagsServiceImpl = new tagsServiceImpl();
+    private usersService usersServiceImpl = new usersServiceImpl();
+    private websitesService websitesServiceImpl = new websitesServiceImpl();
 
     @RequestMapping("/hello")
     public ModelAndView helloWorld() {
         SqlSession session = DBtool.getSession();
         String message = "Website names are: ";
-        List<Website> websites=websitesService.getAllWebsites();
+        List<Website> websites= websitesServiceImpl.getAllWebsites();
  //       Website web=new Website("sina","www.sina.com",1,"Max");
- //       websitesService.insertWebsite(web);
-        User u=usersService.checkUser("Max","123");
+        User u= usersServiceImpl.checkUser("Max","123");
         message=message.concat(u.getNickname());
         for(Website w:websites){
            message=message.concat(w.getWeb_name());

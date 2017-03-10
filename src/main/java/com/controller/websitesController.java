@@ -2,6 +2,9 @@ package com.controller;
 
 import com.domain.User;
 import com.domain.Website;
+import com.service.impl.tagsServiceImpl;
+import com.service.impl.usersServiceImpl;
+import com.service.impl.websitesServiceImpl;
 import com.service.tagsService;
 import com.service.usersService;
 import com.service.websitesService;
@@ -20,9 +23,9 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @RequestMapping("/home")
 public class websitesController {
-    private tagsService tagsService = new tagsService();
-    private usersService usersService = new usersService();
-    private websitesService websitesService = new websitesService();
+    private tagsService tagsServiceImpl = new tagsServiceImpl();
+    private usersService usersServiceImpl = new usersServiceImpl();
+    private websitesService websitesServiceImpl = new websitesServiceImpl();
 
 
     @RequestMapping(value = "/insertWebsite.do", method = RequestMethod.POST)
@@ -38,7 +41,7 @@ public class websitesController {
         if(name==""){
             return "redirect:expired.jsp";
         }
-        User user=usersService.getUserByName(userName);
+        User user= usersServiceImpl.getUserByName(userName);
         if(user!=null) {
             int fav=0;
             if(webFav.trim().toLowerCase().equals("yes")){
@@ -51,7 +54,7 @@ public class websitesController {
                 webUrl="about:blank";
             }
             Website w=new Website(fav,webName,webComment,webUrl,tagId,name);
-            websitesService.insertWebsite(w);
+            websitesServiceImpl.insertWebsite(w);
             return "redirect:/home/index.do?tagId="+tagId;
         }
         return "redirect:/home/index.do";
@@ -66,13 +69,13 @@ public class websitesController {
         if(name==""){
             return "redirect:expired.jsp";
         }
-        User user=usersService.getUserByName(name);
+        User user= usersServiceImpl.getUserByName(name);
 
         if(user!=null) {
-            Website w=websitesService.getWebsiteById(webId);
+            Website w= websitesServiceImpl.getWebsiteById(webId);
             Integer tagId=w.getTag_id();
             if(w!=null&&w.getUser_name().equals(name)){
-                websitesService.deleteWebsite(webId);
+                websitesServiceImpl.deleteWebsite(webId);
             }
             return "redirect:/home/index.do?tagId="+tagId;
         }
@@ -90,7 +93,7 @@ public class websitesController {
         if(name==""){
             return "redirect:expired.jsp";
         }
-        User user=usersService.getUserByName(name);
+        User user= usersServiceImpl.getUserByName(name);
 
         if(user!=null) {
             if(webName==""){
@@ -99,13 +102,13 @@ public class websitesController {
             if(webUrl==""){
                 webUrl="about:blank";
             }
-            Website w=websitesService.getWebsiteById(webId);
+            Website w= websitesServiceImpl.getWebsiteById(webId);
             Integer tagId=w.getTag_id();
             if(w!=null&&w.getUser_name().equals(name)){
                 w.setWeb_name(webName);
                 w.setWeb_url(webUrl);
                 w.setWeb_comment(webComment);
-                websitesService.updateWebsite(w);
+                websitesServiceImpl.updateWebsite(w);
             }
             return "redirect:/home/index.do?tagId="+tagId;
         }
@@ -121,15 +124,15 @@ public class websitesController {
         if(name==""){
             return "redirect:expired.jsp";
         }
-        User user=usersService.getUserByName(name);
+        User user= usersServiceImpl.getUserByName(name);
 
         if(user!=null) {
-            Website w=websitesService.getWebsiteById(webId);
+            Website w= websitesServiceImpl.getWebsiteById(webId);
             Integer tagId=w.getTag_id();
             if(w!=null&&w.getUser_name().equals(name)){
-                websitesService.setWebsiteFav(webId);
+                websitesServiceImpl.setWebsiteFav(webId);
             }
-            if(searchPage.equals("no")){
+            if(searchPage!=null&&searchPage.equals("no")){
                 return "redirect:/home/index.do";
             }else if(searchPage!=null){
                 return "redirect:/home/search.do?web_name="+searchPage;

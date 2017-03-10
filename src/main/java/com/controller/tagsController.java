@@ -2,7 +2,9 @@ package com.controller;
 
 import com.domain.Tag;
 import com.domain.User;
-import com.domain.Website;
+import com.service.impl.tagsServiceImpl;
+import com.service.impl.usersServiceImpl;
+import com.service.impl.websitesServiceImpl;
 import com.service.tagsService;
 import com.service.usersService;
 import com.service.websitesService;
@@ -11,11 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Administrator on 2017/2/16.
@@ -24,9 +23,9 @@ import java.util.List;
 @Controller
 @RequestMapping("/home")
 public class tagsController {
-    private tagsService tagsService = new tagsService();
-    private usersService usersService = new usersService();
-    private websitesService websitesService = new websitesService();
+    private tagsService tagsServiceImpl = new tagsServiceImpl();
+    private usersService usersServiceImpl = new usersServiceImpl();
+    private websitesService websitesServiceImpl = new websitesServiceImpl();
 
 
     @RequestMapping(value = "/insertTag.do", method = RequestMethod.POST)
@@ -38,13 +37,13 @@ public class tagsController {
         if(name==""){
             return "redirect:expired.jsp";
         }
-        User user=usersService.getUserByName(userName);
+        User user= usersServiceImpl.getUserByName(userName);
         if(user!=null) {
             if(tagName=="") {
                 tagName="new tag";
             }
             Tag t= new Tag(tagName, userName);
-            tagsService.insertTag(t);
+            tagsServiceImpl.insertTag(t);
             return "redirect:/home/index.do";
         }
         return "redirect:/home/index.do";
@@ -59,11 +58,11 @@ public class tagsController {
         if(name==""){
             return "redirect:expired.jsp";
         }
-        User user=usersService.getUserByName(name);
+        User user= usersServiceImpl.getUserByName(name);
         if(user!=null) {
-            Tag t=tagsService.getTagById(tagId);
+            Tag t= tagsServiceImpl.getTagById(tagId);
             if(t!=null&&t.getUser_name().equals(name)){
-                tagsService.deleteTag(tagId);
+                tagsServiceImpl.deleteTag(tagId);
             }
         }
         return "redirect:/home/index.do";    }
@@ -78,16 +77,16 @@ public class tagsController {
         if(name==""){
             return "redirect:expired.jsp";
         }
-        User user=usersService.getUserByName(name);
+        User user= usersServiceImpl.getUserByName(name);
 
         if(user!=null) {
             if(tagName=="") {
                 tagName="new tag";
             }
-            Tag t=tagsService.getTagById(tagId);
+            Tag t= tagsServiceImpl.getTagById(tagId);
             if(t!=null&&t.getUser_name().equals(name)){
                 t.setTag_name(tagName);
-                tagsService.updateTag(t);
+                tagsServiceImpl.updateTag(t);
             }
             return "redirect:/home/index.do?tagId="+tagId;
         }
