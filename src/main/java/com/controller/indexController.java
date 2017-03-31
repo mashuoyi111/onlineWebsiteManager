@@ -4,6 +4,7 @@ import com.service.exampleService;
 import com.service.impl.websitesServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -23,10 +24,21 @@ public class indexController {
                                 @RequestParam(required = false) Integer tagNum,
                                 @RequestParam(required = false) Integer tagId){
        String message="";
-            ModelAndView mv=new ModelAndView("websiteManagerWelcome","message",message);
+            ModelAndView mv=new ModelAndView("expired","message",message);
 
             return mv;
 
+    }
+
+    @RequestMapping(value="/hello.do",method = RequestMethod.POST)
+    public ModelAndView hello(Integer password){
+        ModelAndView mv;
+        if(password!=null&&password==123){
+            mv=new ModelAndView("hello","message","Your are right!!!");
+        }else {
+            mv = new ModelAndView("hello", "message", "Incorrect!!!");
+        }
+        return mv;
     }
 
 

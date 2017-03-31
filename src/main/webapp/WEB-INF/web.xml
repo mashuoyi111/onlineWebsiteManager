@@ -11,10 +11,12 @@
   <load-on-startup>0</load-on-startup>
 </servlet>
 
+
   <servlet-mapping>
     <servlet-name>dispatch</servlet-name>
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
+
 
   <welcome-file-list>
     <welcome-file>login.jsp</welcome-file>
