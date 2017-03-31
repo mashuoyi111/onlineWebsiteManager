@@ -11,16 +11,14 @@
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://127.0.0.1:3306/onlinewebsitemanager" />
-                <property name="username" value="java"/>
+                <property name="url" value="jdbc:mysql://127.0.0.1:3306/xxx" />
+                <property name="username" value="xxx"/>
                 <property name="password" value="123"/>
             </dataSource>
         </environment>
     </environments>
 
     <mappers>
-        <mapper resource="mapper/websitesMapper.xml"/>
-        <mapper resource="mapper/usersMapper.xml"/>
-        <mapper resource="mapper/tagsMapper.xml"/>
+        <mapper resource="mapper/exampleMapper.xml"/>
     </mappers>
 </configuration>

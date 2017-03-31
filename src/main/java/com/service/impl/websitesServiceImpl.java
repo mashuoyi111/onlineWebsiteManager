@@ -1,7 +1,7 @@
 package com.service.impl;
 
 import com.domain.Website;
-import com.service.websitesService;
+import com.service.exampleService;
 import com.tools.DBtool;
 
 import java.util.HashMap;
@@ -11,7 +11,7 @@ import java.util.Map;
 /**
  * Created by Administrator on 2017/2/18.
  */
-public class websitesServiceImpl implements websitesService {
+public class websitesServiceImpl implements exampleService {
 
     public List<Website> getAllWebsites(){
         return DBtool.getSession().selectList("getAllWebsites",1);

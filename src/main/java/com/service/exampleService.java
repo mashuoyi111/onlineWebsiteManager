@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by Ma on 17/3/10.
  */
-public interface websitesService {
+public interface exampleService {
     public List<Website> getAllWebsites();
 
     public void insertWebsite(Website w);

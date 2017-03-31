@@ -10,14 +10,14 @@ user_name varchar(100) primary key not null comment 'name of a user',
 password varchar(40) not null comment 'password of a user',
 permission tinyint(2) default 0 not null comment '0 is normal user, 1 is administrator',
 nickname varchar(100) default 'new user' not null comment 'nick name of a user' 
-);
+) CHARSET=utf8 ;
 
 create table if not exists tags(
 tag_id int not null auto_increment primary key,
 tag_name varchar(40) default 'new tag' not null,
 user_name varchar(100) not null,
 FOREIGN KEY(user_name) REFERENCES users(user_name) ON DELETE CASCADE
-);
+) CHARSET=utf8 ;
 
 create table if not exists websites(
 web_id int not null auto_increment primary key comment 'unique id of a website',
@@ -29,7 +29,7 @@ tag_id int not null,
 user_name varchar(100) not null,
 FOREIGN KEY(tag_id) REFERENCES tags(tag_id) ON DELETE CASCADE,
 FOREIGN KEY(user_name) REFERENCES users(user_name) ON DELETE CASCADE 
-);
+) CHARSET=utf8 ;
 
 
 insert into users(user_name,password,nickname) values("Max",sha1("123"),"Max Ma");
